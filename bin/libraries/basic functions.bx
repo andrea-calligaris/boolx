@@ -1,0 +1,150 @@
+~ { Don't run this file: add these functions to your code. }
+
+
+
+: { (1) int add(int x, int y) }
+  {     internal labels: 1 }
+  {     perform an addition between two values and return the result }
+
+  &>&<
+  { cell #0: int x
+    cell #1: int y
+    cell #2: bool carry
+    cell #3: int result
+  }
+
+  / { *add_loop }
+
+  : { (2) add_loop: }
+    " >		{ A reached NULL bit }
+      " >		{ B reached NULL bit too! the addition is basically done }
+        ? >^#~	{ carry is stil 1; add it to the result, and return the result }
+        ! >#~ ;	{ carry is 0; just return the result }
+      ! < ;		{ B not finished reading; go back }
+    ;		{ A not finished reading }
+
+    >>			{ to the carry }
+    ? _<<		{ if the carry is 1, make it 0 and add accordingly: }
+      ?>?>^>^!>^>_;		{ x's bit == 1 cases }
+      !>?>^>_!>>^;;		{ x's bit == 0 cases }
+    ! <<		{ if the carry is 0, keep summing the bits normally: }
+      ?>?>^>_!>>^;		{ x's bit == 1 cases }
+      !>?>>^!>>_;;		{ x's bit == 0 cases }
+    ;
+
+    |+>+>>+<<<		{ advance to the next bit (for all cells), and repeat: }
+    '			{ goto add_loop }
+
+
+
+: { (3) int sub(int x, int y) }
+  {     internal labels: 1 }
+  {     perform a subtraction between two values and return the result }
+
+  &>&<
+  { cell #0: int x
+    cell #1: int y
+    cell #2: bool borrow
+    cell #3: int result
+  }
+
+  / { *sub_loop }
+
+  : { (4) sub_loop: }
+  " >		{ A reached NULL bit }
+    " >>#/@	{ normalize(x); and just leave it in the global queue }
+      ~		{ B too: return(result) }
+    ! < ;	{ B not finished reading; go back }
+  ;		{ A not finished reading }
+
+  >>		{ to the borrow }
+
+  ? _<<		{ if the borrow is 1, make it 0 and subtract accordingly: }
+    ?>  ?>^>^!>_>_;		{ x's bit == 1 cases }
+    !>  ?>^>_!>^>^;;		{ x's bit == 0 cases }
+
+  ! <<		{ if the borrow is 0, keep subtracting the bits normally: }
+    ?>  ?>>_!>>^;		{ x's bit == 1 cases }
+    !>  ?>^>^!>>_;;		{ x's bit == 0 cases }
+  ;
+
+  |+>+>>+<<<	{ advance to the next bit (for all cells), and repeat: }
+  '		{ goto sub_loop }
+
+
+
+: { (5) int normalize(int x) }
+  {     internal labels: 2 }
+  {     eliminate unuseful zero bits from the end of a binary value }
+
+  &
+  { cell #0: int x
+    cell #1: bool number_is_greater_than_zero = false (NULL)
+  }
+
+  "#~;		{ if x == NULL: return(x) // nothing to do }
+
+  / { *loop_A }
+
+  : { (6) loop_A: }
+    ?		{ if bit == 1 }
+      >^<	{ number_is_greater_than_zero = true }
+    ;
+    "!		{ if bit != NULL: }
+      +		{ go to the next bit and repeat: }
+      '		{ goto loop_A }
+    ;
+
+  { if bit == NULL: last bit has been reached }
+
+  >
+  ? <		{ if number_is_greater_than_zero == true: go back }
+  ! <%_#~;	{ else: return(0) }
+
+  { the number is greater than zero; }
+  { remove all zeros starting from the last bit, till there's a 1 }
+  / { *loop_B }
+  : { (7) loop_B: }
+    ?#~		{ if bit == 1: return(x) }
+    !*;		{ else: bit = NULL }
+    -		{ previous bit }
+    '		{ goto loop_B }
+
+
+
+: { (8) show_binary(int x) }
+  {     internal labels: 2 }
+  {     show a value in base 2 }
+
+  &>_>^>^+_+_+_+^+^=>_+_+_+_+^+^=|
+  { cell #0: int x
+    cell #1: int bits_counter = 0
+    cell #2: int the_number_1 = 1
+    cell #3: ASCII character '1'
+    cell #4: ASCII character '0'
+  }
+
+  : { (9) count_number_of_bits: }
+    " -		{ if x selected bit == NULL: previous bit }
+      /		{ (*10) *go_on }
+      '		{ goto go_on }
+    !		{ else }
+      $		{ *add }
+      >#>#@<&<	{ bits_counter = add(bits_counter, the_number_1) (bits_counter++) }
+    { ';' not needed due to the jump }
+    +		{ next bit }
+    $//////// { *count_number_of_bits }
+    '		{ goto count_number_of_bits (';' not needed due to the jump) }
+
+  : { (10) go_on: }
+    >?!+"~	{if bit_counter has reached zero the function ends}
+        ;=
+      ;		{ otherwise }
+    $//		{ *sub }
+    #>#@<&<	{ bits_counter = sub(bits_counter, the_number_1) (bits_counter--) }
+    ?>>>]       { if 1, print 1 }
+    !>>>>];	{ if 0, print 0 }
+    |-		{ back to "x"; previous bit }
+    $/////////
+    '		{ goto go_on }
+

@@ -1,0 +1,18 @@
+{ next_ASCII_char.bx }
+{ This program gets an ASCII character from the user and it prints the next one. }
+
+[		{ get(x) }
+>^		{ int y = 1 }
+<#>#@>&		{ result = add(x, y) }
+]		{ print(result) }
+~
+
+
+
+: { (1) int add(int x, int y) }
+  {     internal labels: 1 }
+  {     perform an addition between two values and return the result }
+
+  &>&</:">">?>^#~!>#~;!<;;>>?_<<?>?>^>^!>^>_;!>?>^>_!>>^;;!<<?>?>^>_!>>^;
+  !>?>>^!>>_;;;|+>+>>+<<<'
+

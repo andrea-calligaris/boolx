@@ -1,0 +1,65 @@
+{ addition.bx }
+{ This program sums two numbers and displays what it's doing on the screen. }
+
+{ cell #0: int x
+  cell #1: int y
+  cell #2: char ASCII symbol
+  cell #3: int result
+}
+
+_+_+_+_+_+_+^		{ x = something }
+#///////@		{ show_binary(a); }
+
+>>_+_+_+_+_+^+_]=	{ print 'space' }
+^+^+_+^+_+^+*]=		{ print '+' }
+_+_+_+_+_+^+_]=		{ print 'space' }
+
+
+<^+_+^+^+^		{ y = something }
+#$///////@		{ show_binary(b); }
+
+>_+_+_+_+_+^+_]=	{ print 'space' }
+^+_+^+^+^+^+*]=		{ print '=' }
+_+_+_+_+_+^+_]		{ print 'space' }
+
+
+<<#>#$@>>&		{ result = add(a, b); }
+
+
+#$///////@		{ show_binary(result); }
+
+~
+
+
+
+: { (1) int add(int x, int y) }
+  {     internal labels: 1 }
+  {     perform an addition between two values and return the result }
+
+   &>&</:">">?>^#~!>#~;!<;;>>?_<<?>?>^>^!>^>_;!>?>^>_!>>^;;!<<?>?>^>_!>>^;
+  !>?>>^!>>_;;;|+>+>>+<<<'
+
+
+
+: { (3) int sub(int x, int y) }
+  {     internal labels: 1 }
+  {     perform a subtraction between two values and return the result }
+
+  &>&</:">">>#/@~!<;;>>?_<<?>?>^>^!>_>_;!>?>^>_!>^>^;;
+  !<<?>?>>_!>>^;!>?>^>^!>>_;;;|+>+>>+<<<'
+
+: { (5) int normalize(int x) }
+  {     internal labels: 2 }
+  {     eliminate unuseful zero bits from the end of a binary value }
+
+  &"#~;/:?>^<;"!+';>?<!<%_#~;/:?#~!*;-'
+
+
+
+: { (8) show_binary(int x) }
+  {     internal labels: 2 }
+  {     show a value in base 2 }
+
+  &>_>^>^+_+_+_+^+^=>_+_+_+_+^+^=|:"-/'!$>#>#@<&<+$////
+  ////':>?!+"~;=;$//#>#@<&<?>>>]!>>>>];|-$/////////'
+
