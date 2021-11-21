@@ -52,6 +52,8 @@ To run a program: `boolx <source_file>` from the command line.
 Program source files are simple text files with the courtesy `.bx` extension.
 The interpreter reads Unix (LF) line endings.
 
+The interpreter features a debug mode activable with the `-d` option which makes it easier to understand what's going on during runtime.
+
 ## Compactor utility
 
 With the utility software [compactorx](src/compactor.c) it's possible to remove comments and compact a program with the goal of creating an artistic and esoteric source code.
