@@ -25,7 +25,7 @@ Output:
 
 `1000000 + 11101 = 1011101` (64 + 29 = 93)
 
-Out of the box, like _brainfuck_, _BoolX_ can only print the corresponding _ASCII_ character of a cell. Because of this, the above program actually contains a function that, calling in turn other functions, manually prints the bits of a cell on screen.
+Out of the box, like [_brainfuck_](https://esolangs.org/wiki/Brainfuck), _BoolX_ can only print the corresponding _ASCII_ character of a cell. Because of this, the above program actually contains a function that, calling in turn other functions, manually prints the bits of a cell on screen.
 
 ## "Hello, world!" program
 
