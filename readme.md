@@ -1,6 +1,6 @@
 # BoolX
 
-**BoolX** is an [esoteric programming language](https://esolangs.org) based on _brainfuck_ that works with **binary numbers**. The cool part is that it allows to do arithmetics and other operations with numbers of theoretically infinite length.
+**BoolX** is an [esoteric programming language](https://esolangs.org) that works with **binary numbers**. The cool part is that it allows to do arithmetics and other operations with numbers of theoretically infinite length.
 Every instruction in _BoolX_ is an _ASCII_ character.
 
 I invented it in 2008.
