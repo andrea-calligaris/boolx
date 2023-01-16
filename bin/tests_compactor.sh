@@ -1,24 +1,27 @@
-#!/bin/sh
+#!/bin/dash
 
-echo "\t\t '' Compactor tests ''"
+clear
+
+printf "\t\t ## Compactor tests ##"
 
 executable="./compactorx"
-prompt="> "
+separator="-------------------------------"
+prompt=" > "
 
 command="$executable"
-echo "\n\n$prompt$command"
+printf "\n\n\n%s\n\n%s%s\n\n" "$separator" "$prompt" "$command"
 $command
 
 command="$executable -l 20"
-echo "\n\n$prompt$command"
+printf "\n\n\n%s\n\n%s%s\n\n" "$separator" "$prompt" "$command"
 $command
 
 command="$executable --lines_length 20 arg1 arg2"
-echo "\n\n$prompt$command"
+printf "\n\n\n%s\n\n%s%s\n\n" "$separator" "$prompt" "$command"
 $command
 
 command="$executable arg1 arg2"
-echo "\n\n$prompt$command"
+printf "\n\n\n%s\n\n%s%s\n\n" "$separator" "$prompt" "$command"
 $command
 
 test_file="programs/compactor_test_file.bx"
@@ -26,34 +29,40 @@ if test -f "$test_file"; then # file exists
     rm "$test_file" # delete it
 fi
 command="$executable programs/addition.bx $test_file"
-echo "\n\n$prompt$command"
+printf "\n\n\n%s\n\n%s%s\n\n" "$separator" "$prompt" "$command"
 $command
 command="cat $test_file"
-echo "$prompt$command"
+printf "\n%s%s\n" "$prompt" "$command"
 $command
-echo ""
+printf "\n"
 
 if test -f "$test_file"; then # file exists
     rm "$test_file" # delete it
 fi
 command="$executable -l 20 programs/addition.bx $test_file"
-echo "\n\n$prompt$command"
+printf "\n\n\n%s\n\n%s%s\n\n" "$separator" "$prompt" "$command"
 $command
 command="cat $test_file"
-echo "$prompt$command"
+printf "\n%s%s\n" "$prompt" "$command"
 $command
-echo ""
+printf "\n"
 
 if test -f "$test_file"; then # file exists
     rm "$test_file" # delete it
 fi
 command="$executable --lines_length 20 programs/addition.bx $test_file"
-echo "\n\n$prompt$command"
+printf "\n\n\n%s\n\n%s%s\n\n" "$separator" "$prompt" "$command"
 $command
 command="cat $test_file"
-echo "$prompt$command"
+printf "\n%s%s\n" "$prompt" "$command"
 $command
-echo ""
+printf "\n"
 
-echo "\n\n\n\n"
+# etc.
+
+if test -f "$test_file"; then # file exists
+    rm "$test_file" # delete it
+fi
+
+printf "\n\n\n\n"
 
