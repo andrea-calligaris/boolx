@@ -220,3 +220,4 @@ Using a function and the global queue:
 ```
 
 As explained in the last comment, the program never ends until the last function (including the main program) finishes the execution.
+
