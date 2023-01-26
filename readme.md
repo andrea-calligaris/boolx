@@ -172,13 +172,18 @@ By typing `?` or `"` an _if condition_ starts, and all the instructions wich fol
 
 Examples:
 
-`?_;     { if the bit is equal to 1, make it 0 }`
-
-```?_!*;   { if the bit is equal to 1 make it 0,
-           otherwise make it null }
+```
+?_;     { if the bit is equal to 1, make it 0 }
 ```
 
-`^:?]'   { infinite printing }`
+```
+?_!*;   { if the bit is equal to 1 make it 0,
+	  otherwise make it null }
+```
+
+```
+^:?]'   { infinite printing }
+```
 
 ```
 =? +    { first IF condition: if the first bit is
