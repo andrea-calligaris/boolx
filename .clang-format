@@ -1,0 +1,14 @@
+# clang-format-8
+Language:				Cpp
+BasedOnStyle:				LLVM
+ColumnLimit:				80
+UseTab:					Always
+IndentWidth:				8
+TabWidth:				8
+AlwaysBreakAfterDefinitionReturnType:	true
+BreakBeforeBraces:			Linux
+AlignAfterOpenBracket:			AlwaysBreak
+AllowShortIfStatementsOnASingleLine:	false
+AllowShortLoopsOnASingleLine:		false
+Standard:				Auto
+

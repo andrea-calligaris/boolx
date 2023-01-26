@@ -1,12 +1,10 @@
 # Contributing
 
-## ClangFormat
+## Clang-format
 
-The _ClangFormat_ configuration file is [here](.clang-format).
+The _clang-format_ configuration file is [here](../.clang-format).
 
-## Other code style guidelines
-
-Add braces to single line _if statements_.
+Unless you use a new version that can do that automatically, remember to manually add braces to single line _if statements_.
 
 ## Code style for the BoolX language itself
 
