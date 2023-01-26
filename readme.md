@@ -182,9 +182,9 @@ Examples:
 
 ```
 =? +    { first IF condition: if the first bit is
-	{ equal to 1: }
+	  equal to 1: }
   ? * ; { a secound IF condition is done on the next bit;
-          if it's equal to 1, make it null }
+	  if it's equal to 1, make it null }
   ! > ; { otherwise go to the next cell }
  ;      { end of the first IF condition }
 ```
