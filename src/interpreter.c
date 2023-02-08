@@ -26,7 +26,6 @@ struct TLabel;
 struct TIfElseStatement;
 
 static bool my_strcpy(char *destination, char *source, size_t max_length);
-static bool my_strcat(char *destination, char *source, size_t max_length);
 
 static int process_arguments(int argc, char *argv[]);
 
@@ -190,25 +189,9 @@ my_strcpy(char *destination, char *source, size_t max_length)
 	}
 }
 
-bool
-my_strcat(char *destination, char *source, size_t max_length)
-{
-	size_t destlen = strlen(destination);
-	size_t srclen = strlen(source);
-	size_t catlen = destlen + srclen;
-	if (catlen + 1 > max_length) {
-		error = ERR_STRING_TOO_LONG;
-		return 1;
-	} else {
-		strcat(destination, source);
-		return 0;
-	}
-}
-
 int
 process_arguments(int argc, char *argv[])
 {
-	int index;
 	int c;
 	opterr = 0;
 	int non_option_argc;

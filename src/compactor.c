@@ -24,7 +24,6 @@ static int
 process_arguments(int argc, char *argv[])
 {
 	char *lines_length_arg = NULL;
-	int index;
 	int c;
 	opterr = 0;
 	int non_option_argc;
