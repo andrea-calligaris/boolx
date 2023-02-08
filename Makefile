@@ -2,12 +2,12 @@ CC	= musl-gcc
 CFLAGS	= -std=c99 -Wall -pedantic
 LDFLAGS	= -static -s
 
-all: boolx compactorx
+all: bin/boolx bin/compactorx
 
-boolx:
+bin/boolx: src/interpreter.c
 	$(CC) -o bin/boolx src/interpreter.c $(CFLAGS) $(LDFLAGS)
 
-compactorx:
+bin/compactorx: src/compactor.c
 	$(CC) -o bin/compactorx src/compactor.c $(CFLAGS) $(LDFLAGS)
 
 clean:
