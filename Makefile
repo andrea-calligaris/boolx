@@ -1,6 +1,6 @@
-CC=musl-gcc
-CFLAGS= -std=c99 -Wall -pedantic
-LDFLAGS  = -static -s
+CC	= musl-gcc
+CFLAGS	= -std=c99 -Wall -pedantic
+LDFLAGS	= -static -s
 
 all: boolx compactorx
 
