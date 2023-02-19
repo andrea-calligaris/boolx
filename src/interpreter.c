@@ -81,8 +81,6 @@ static void input(struct TCell *cell);
 
 static void process_errors();
 
-int main(int argc, char *argv[]);
-
 enum condition_types { CONDITION_IF, CONDITION_ELSE };
 enum errors {
 	OK = 0,
